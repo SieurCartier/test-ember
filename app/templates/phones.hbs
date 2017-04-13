@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="row">
+    {{#phone-filter filter=(action 'filterPhones') order=(action 'orderPhones') as |results|}}
+      {{#each results as |phoneUnit|}}
+        <li class="thumbnail">{{phone-list phone=phoneUnit}}</li>
+      {{/each}}
+    {{/phone-filter}}
+  </div>
+</div>
+{{outlet}}

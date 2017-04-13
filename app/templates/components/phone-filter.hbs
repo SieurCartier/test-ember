@@ -1,0 +1,20 @@
+<div class="col-md-2">
+  <label>
+    Search:
+    {{input value=value key-up=(action 'handleFilterEntry')}}
+  </label>
+  <label>
+    Sort by:
+      <select onchange={{action 'handleOrderEntry' value="target.value"}}>
+        {{#each orders as |orderChoice|}}
+          <option value={{orderChoice.value}} selected={{eq orderBy orderChoice.value}}>{{orderChoice.label}}</option>
+        {{/each}}
+
+    </select>
+  </label>
+</div>
+<div class="col-md-10">
+  <ul class="phones">
+    {{yield results}}
+  </ul>
+</div>

@@ -1,0 +1,9 @@
+{{#link-to "details" phone.id}}
+  <a class="thumb">
+    <img src="{{phone.imageUrl}}" alt="{{phone.name}}"/>
+  </a>
+{{/link-to}}
+<a>{{#link-to "details" phone.id }}{{phone.name}}{{/link-to}}</a>
+<p>{{phone.snippet}}</p>
+
+{{yield}}
