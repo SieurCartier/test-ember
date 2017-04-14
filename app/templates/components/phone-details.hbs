@@ -1,1 +1,124 @@
-<p>{{mainImageUrl}}</p>
+<img src={{mainImgUrl}} class='phone'/>
+
+<h1>{{results.name}}</h1>
+
+<p>{{results.description}}</p>
+
+<ul class='phone-thumbs'>
+  {{#each results.images as |img index|}}
+    <li>
+      <img src={{concat '/' img}} onclick={{action 'setImage' img}}/>
+    </li>
+  {{/each}}
+</ul>
+
+<ul class='specs'>
+  <li>
+    <span>Availability and Networks</span>
+    <dl>
+      <dt>Availability</dt>
+      {{#each results.availability as |availability|}}
+        <dd>{{availability}}</dd>
+      {{/each}}
+    </dl>
+  </li>
+  <li>
+    <span>Battery</span>
+    <dl>
+      <dt>Type</dt>
+      <dd>{{results.battery.type}}</dd>
+      <dt>Talk Time</dt>
+      <dd>{{results.battery.talkTime}}</dd>
+      <dt>Standby time (max)</dt>
+      <dd>{{results.battery.standbyTime}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Storage and Memory</span>
+    <dl>
+      <dt>RAM</dt>
+      <dd>{{results.storage.ram}}</dd>
+      <dt>Internal Storage</dt>
+      <dd>{{results.storage.flash}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Connectivity</span>
+    <dl>
+      <dt>Network Support</dt>
+      <dd>{{results.connectivity.cell}}</dd>
+      <dt>WiFi</dt>
+      <dd>{{results.connectivity.wifi}}</dd>
+      <dt>Bluetooth</dt>
+      <dd>{{results.connectivity.bluetooth}}</dd>
+      <dt>Infrared</dt>
+      <dd>{{checkmark results.connectivity.infrared}}</dd>
+      <dt>GPS</dt>
+      <dd>{{checkmark results.connectivity.gps}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Android</span>
+    <dl>
+      <dt>OS Version</dt>
+      <dd>{{results.android.os}}</dd>
+      <dt>UI</dt>
+      <dd>{{results.android.ui}}</dd>
+    </dl>
+  </li>
+
+  <li>
+    <span>Size and Weight</span>
+    <dl>
+      <dt>Dimensions</dt>
+      {{#each results.sizeAndWeight.dimensions as |dim|}}
+        <dd>{{dim}}</dd>
+      {{/each}}
+      <dt>Weight</dt>
+      <dd>{{results.sizeAndWeight.weight}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Display</span>
+    <dl>
+      <dt>Screen size</dt>
+      <dd>{{results.display.screenSize}}</dd>
+      <dt>Screen resolution</dt>
+      <dd>{{results.display.screenResolution}}</dd>
+      <dt>Touch screen</dt>
+      <dd>{{checkmark results.display.touchScreen}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Hardware</span>
+    <dl>
+      <dt>CPU</dt>
+      <dd>{{results.hardware.cpu}}</dd>
+      <dt>USB</dt>
+      <dd>{{results.hardware.usb}}</dd>
+      <dt>Audio / headphoneDetails jack</dt>
+      <dd>{{results.hardware.audioJack}}</dd>
+      <dt>FM Radio</dt>
+      <dd>{{checkmark results.hardware.fmRadio}}</dd>
+      <dt>Accelerometer</dt>
+      <dd>{{checkmark results.hardware.accelerometer}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Camera</span>
+    <dl>
+      <dt>Primary</dt>
+      <dd>{{results.camera.primary}}</dd>
+      <dt>Features</dt>
+      <dd>{{join results.camera.features}}</dd>
+    </dl>
+  </li>
+  <li>
+    <span>Additional Features</span>
+    <dd>{{results.additionalFeatures}}</dd>
+  </li>
+</ul>
+
+
+{{yield}}
+

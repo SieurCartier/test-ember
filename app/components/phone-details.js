@@ -1,20 +1,26 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  mainImageUrl: '',
-  phoneDetails: {},
 
-  init() {
+  results: {},
+  mainImg: '',
+
+  init(){
     this._super(...arguments);
-    console.log(this.get('phoneId'));
-    console.log(param.phoneId);
+    let self = this;
+    this.get('oui')().then((res) => {
+      self.set('results', res);
+      self.set('mainImg', res.images[0]);
+    });
   },
 
-  model(param){
-    console.log(param);
-    console.log(param.phoneId);
-  },
+  mainImgUrl: Ember.computed('mainImg', function () {
+    return '/' + this.get('mainImg');
+  }),
 
-  actions: {}
-
+  actions: {
+    setImage(img) {
+      this.set('mainImg', img)
+    }
+  }
 });

@@ -10,18 +10,17 @@ export default Ember.Component.extend({
   ],
 
   init() {
-    let self = this;
     this._super(...arguments);
-    this.get('filter')('').then((results) => self.set('results', results));
-    this.set('orderBy', 'age');
+    let self = this;
+    self.get('filter')('').then((results) => self.set('results', results));
+    self.set('orderBy', 'age');
   },
 
   actions: {
-    handleOrderEntry(){
+    handleOrderEntry(value){
       let self = this;
-      let orderSelectValue = this.get('orderBy');
-      let orderAction = this.get('order');
-      orderAction(orderSelectValue).then((orderResults) => {
+      let orderAction = self.get('order');
+      orderAction(value).then((orderResults) => {
           self.set('results', orderResults);
         }
       );
@@ -29,10 +28,10 @@ export default Ember.Component.extend({
 
     handleFilterEntry() {
       let self = this;
-      let filterInputValue = this.get('value');
-      let filterAction = this.get('filter');
+      let filterInputValue = self.get('value');
+      let filterAction = self.get('filter');
       filterAction(filterInputValue).then((filterResults) => {
-          self.set('results', filterResults);
+          self.set('results', filterResults.sort());
         }
       );
     }
