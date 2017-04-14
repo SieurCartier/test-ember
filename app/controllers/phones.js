@@ -14,13 +14,12 @@ export default Ember.Controller.extend({
     filterPhones(param) {
       let self = this;
 
-      return new Ember.RSVP.Promise((resolve, reject) => {
+      return new Ember.RSVP.Promise((resolve) => {
         self.get('model').phones.then((res) => {
-          let temp = res.filter((element) => {
+          self.set('filteredPhones',res.filter((element) => {
             let reg = new RegExp(param, 'i');
             return reg.test(element.name);
-          });
-          self.set('filteredPhones', temp);
+          }));
           self.orderPhones();
           resolve(self.get('filteredPhones'));
         });
@@ -31,7 +30,7 @@ export default Ember.Controller.extend({
       let self = this;
       self.set('orderBy', param);
       self.orderPhones();
-      return new Ember.RSVP.Promise((resolve, reject) => {
+      return new Ember.RSVP.Promise((resolve) => {
         resolve(self.get('filteredPhones'));
       });
     }
